@@ -121,6 +121,14 @@
 																<p>The series of communication links and package switches that a packet goes through on its way from a sending
 																	to recieving system is typically called a <strong>route</strong> or <strong>path</strong>.</p>
 
+																	<p>Packages are transmitted to each communication link at <strong>a rate equal to the full transmission rate of the link</strong>.
+																		So if a source end-system or packet-switch is sending a packet of L bits over a link with a transmission rate of
+																		R bits/sec, then the time to trasmit the package is L/R seconds. </p>
+
+																		<p>Most packet switches use <strong>store-and-forward transmission</strong> at the inputs to the link. This means that the
+																			packet-switch <strong>must receive the entire packet</strong> before it can begin to <strong>transfer the first bit of the packet into
+																			the outbound link</strong>.</p>
+
 
 															<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: ISPs</button><br/><br/>
                             </div>
