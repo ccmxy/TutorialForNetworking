@@ -49,7 +49,7 @@
 								<span class="icon">
 									<i aria-hidden="true" class="icon-blog"></i>
 								</span>
-								<span>Registering App for SoundCloud Authentication</span>
+								<span>ISPs</span>
 							</a>
 						</li>
 						<li>
@@ -57,7 +57,7 @@
 								<span class="icon">
 									<i aria-hidden="true" class="icon-team"></i>
 								</span>
-								<span>Hosting the Website</span>
+								<span>A Service Description</span>
 							</a>
 						</li>
 						<li>
@@ -88,11 +88,15 @@
                                 <p>Before we delve into <a href=https://developers.soundcloud.com/>developers.soundcloud.com</a>, let's discuss what <strong>API</strong> means.</p>
 
                                 <p>The Internet is a network made up of hundreds of millions of interconected devices referred to as
-																<strong>hosts</strong> and <strong>end-systems.</strong></p>
+																<strong>hosts</strong> (also referred to as <strong>end-systems</strong>.)
+																They are referred to as end systems because they sit at the edge of the Internet, and they are referred to as hosts because
+																they host applications such as a Web browser program, a Web server program, or an e-mail server program.</p>
 
 																<p><strong>End-systems</strong> are connected by <strong>communication links</strong> (physical media like coaxil cable,
 																copper wire, optical fiber and radio spectrums) and <a href="#" onclick="$('#section-3').animatescroll();"><strong>packet-switches.</strong></a></p>
 
+																<p>The <strong>access network</strong> is the network that physically connects an end-system to <strong>the first router</strong>
+																	(aka <strong>the edge router</strong>) on the path from the end system to any distant system. </p>
 																<br><br><button class="btn" onclick="$('#section-3').animatescroll({scrollSpeed:3000,easing:'easeInOutBounce'});">Next: Packet Switches</button><br/><br/>
                             </div>
                         </div>
@@ -118,45 +122,55 @@
 																	to recieving system is typically called a <strong>route</strong> or <strong>path</strong>.</p>
 
 
-															<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: Registering our App</button><br/><br/>
+															<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: ISPs</button><br/><br/>
                             </div>
                         </div>
 
                         <div id="section-4">
                             <div class="content-wrapper w70">
-                                <h1>Registering our App for Authentication</h1>
+                                <h1>ISPs</h1>
 
-																We talked about how if our app is allowed to access the users' SoundCloud account, it may view
-																things that they have marked private, as well as act on their behalf.
+																<p>End systems access the Internet through <strong>Internet Service Providers (ISPs)</strong>. </p>
 
-																<br><br>In order for our app to gain permission from SoundCloud to do this, we must register our app.
-																Go to <a href=http://soundcloud.com/you/apps> http://soundcloud.com/you/apps </a>:
-																<img class="small" src="img/register-app.png">
-																<br><br>You will need to either sign into or create a SoundCloud account. Now click "register application." You will be taken to this page:<br>
+																<p>Each ISP is in itself a network of packet switches and communication links. ISPs provide Internet access to both
+																users and content-providers, connecting websites directly to the Internet.</p>
 
-																<img class="small" src="img/registerAppBar.png">
+																<p>Lower-tier ISPs are connected through national and international
+																	upper-tier ISPs, such as Level 3 Communications, AT&T, Sprint, and NTT. An upper-tier ISP consists of a high-speed router
+																interconnected with high-speed fiber-optic links.</p>
 
-																<br>Choose a name, check the Developer Policies box, and hit "Register" We'll call ours "SoundCloudAPIExample."
-																<br><br>Now we'll hit a roadblock.<br>
-																<img class="small" src="img/register-app-creds.png">
+																<p>End-systems, packet-switches and more run <strong>protocols</strong> that control the sending and receiving of information within the Internet.</p>
+																<p>Two important protocols:</p>
+																<ul>
+																		<li>The <strong>Transmission Control Protocol(TCP)</strong></li>
+																		<li>The <strong>Internet Protocol (IP)</strong> </li>
+																</ul>
 
-																<br>Notice the empty input boxes labeled "Website for your app" and "Redirect URI for Authorization."
-																 We will need to be able to access our index file on a server, which we will point the box "website of your app" to, and we will need
-																 to <strong>host a callback file on that same server</strong> which we set <code>redirect_uri</code> to.
+																<p>Together, these are known as TC/IP.</p>
 
-                                                                 <br><br>Upon a successful connection, this file will be used to <strong>send an authentication token back to our application</strong>, allowing the host app to access account privilages for a specific user. For security reasons, SoundCloud will only redirect users to URIs which are hosted <strong>on the same domain as the host app.</strong> Therefore, we will have to add in another file later. But we'll worry about that then.
+																<p><strong>Internet Standards</strong> are developed by the <strong>Internet Engineering Task Force (IETF)</strong>.
+																	The IETF standards documetns are called <strong>requests for comments (RFCs)</strong>. RFCs define protocols such as
+																	TCP, IP, HTTP (for web), and SMTP (for email). There are currently more than 6,000 RFCs.
 
-																 <br><br><button class="btn" onclick="$('#section-5').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Hosting our Website</button><br/><br/>
+																</p>
+
+																<p>The IEE 802 LAN/MAN Standards Committee specifies the Ethernet and wireless WiFi standards.</p>
+
+																 <br><br><button class="btn" onclick="$('#section-5').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: A Service Description</button><br/><br/>
 
                             </div>
                         </div>
 
                         <div id="section-5"  onclick="$('#section-6').animatescroll({scrollSpeed:3000,padding:-30,easing:'easeInOutBack'});">
                             <div class="content-wrapper w70">
-                                <h1>Hosting our Website</h1>
-																<p>For this demo, we're going to use <strong>Amazon Web Services</strong> to host our website. Specifically, we are going to use Amazon Simple Service storage.
-																With Simple Service Storage, Inbound Data Transfer is free and outbound data transfer is free for 1 GB per region per month. Luckily this website will be small and not many will be using it
-																so I don't think we will get charged.  </p>
+                                <h1>A Service Description</h1>
+																<p>Services like electonric mail, web surfing, social networks, instant messeging, video streaming, P2P file sharing, etc.
+																are said to be <strong>distributed applications.</strong> This is because they involve multiple end systems that exchange data with each
+															other. Internet applications <strong>run on end systems--</strong> they do not run in the packet switches in the network core.
+
+														Although packet switches facilitate the exchange of data among end systems, <strong>they are not concerned with the application that is the source or sink of the data.</strong> </p>
+
+
 
 																	<p> To start, we're going to assume that you already have an Amazon Web Services account.
 																	To host a simple website with javascript and html, simply go to the <a href="https://us-west-2.console.aws.amazon.com/console/">AWS Management Console</a>
