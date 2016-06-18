@@ -449,21 +449,48 @@
 
 
 																	<h1> Lecture 4: Network Structure and Performance</h1>
-																	
-																	<p>1) What is an access network?/p>
-																	<p>2) ______________is the rate at which bits are actually transferred between sender/receiver/p>
+
+																	<p>1) What is an access network?</p>
+																	<span class="hidden">A network that allows a host to connect to the internet</span>
+																	<p>2) <span class="hidden">Throughput</span> is the rate at which bits are actually transferred between sender/receiver/p>
 																	<p>3) Describe the sources of nodal delay in packet-switched networks.</p>
+
+																	<span class="hidden">
+																			<ul>
+																				<li>Processing delay: Time spent processing header information, checking bit errors, and
+																					deciding outport link</li>
+																					<li>Queueing delay: Time waiting for the transmission medium</li>
+																					<li>Transmission delay: Time spent being placed on the transmission medium, limited by the
+																						transmission protocol.<br>
+																						 Where <strong>R</strong>=link bandwidth (speed in bits per second, i.e. “bps”) and <strong>L</strong>=packet length (in bits),<br>
+																					 <strong>Transmission Delay = L/R</strong></li>
+																						<li>Propagation delay: Time spent traveling on the physical medium</li>
+																			</ul>
+																	</span>
+
 																	<p>4) What is the equation for end-to-end delay?</p>
+																	<span class="hidden">d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + d<sub>trans</sub>+ d<sub>prop</sub></span>
+
 																	<p>5) Consider two hosts (A and B) connected by a single link with transmission rate <strong>R</strong> bps.<br>
 																		The hosts are separated physically by <strong>d</strong> meters along a cable for which the speed of
 																		propagation is <strong>s</strong> meters per second. Host A sends a packet of length <strong>L</strong> bits to host B</p>
 																		<ul>
 																	<li>	a. Show the propagation delay d<sub>prop</sub> in terms of<strong> d </strong>and <strong>s</strong>: </li>
+																	<span class="hidden"></span>
+
 																		<li> b. Show the transmission delay d<sub>trans</sub> in terms of <strong>L</strong> and <strong>R</strong>:</li>
+																		<span class="hidden"></span>
+
 																	<li>	c. Suppose Host A begins to transmit at time t = 0. At time t = d<sub>trans</sub> where is the last
 																		bit of the packet?</li>
+																		<span class="hidden"></span>
+
 																	<li>	d. Suppose that d<sub>prop</sub> > d<sub>trans</sub>. At time t = d<sub>trans</sub>, where is the first bit of the packet?</li>
+																	<span class="hidden"></span>
+
 																	<li>	e. Suppose that d<sub>prop</sub> < d<sub>trans</sub>. At time t = d<sub>trans</sub>, where is the first bit of the packet?</li>
+																	<span class="hidden"></span>
+
 																	<li>	f. Let s = 2.5x10<sup>8</sup> m/s, L = 120 bits, R = 56 Kbps. Find <strong>d</strong> such that d<sub>prop</sub> = d<sub>trans</sub>.</li>
 																</ul>
 																			<p>
