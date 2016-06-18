@@ -65,7 +65,7 @@
 								<span class="icon">
 									<i aria-hidden="true" class="icon-contact"></i>
 								</span>
-								<span>Creating the Redirect URI</span>
+								<span>Queing Delays and Packet Loss</span>
 							</a>
 						</li>
 						<li>
@@ -73,7 +73,7 @@
 								<span class="icon">
 									<i aria-hidden="true" class="icon-contact"></i>
 								</span>
-								<span>Adding the Javascript</span>
+								<span>Circuit Switching</span>
 							</a>
 						</li>
 					</ul>
@@ -85,7 +85,6 @@
                         <div id="section-2">
                             <div class="content-wrapper w70">
                                 <h1>What is the Internet?</h1>
-                                <p>Before we delve into <a href=https://developers.soundcloud.com/>developers.soundcloud.com</a>, let's discuss what <strong>API</strong> means.</p>
 
                                 <p>The Internet is a network made up of hundreds of millions of interconected devices referred to as
 																<strong>hosts</strong> (also referred to as <strong>end-systems</strong>.)
@@ -109,6 +108,13 @@
 																 to each segment. The resulting packages of information (packets) are sent through the network to the end system,
 															 where they are reassembled into the original data.</p>
 
+															 <p>The header of each packet contains the IP address. This works like a postal system. A packet arrives at a router in the network and the
+																 router, the router examines a portion of the packet's destination address and forwards the packet to an adjacent router. It does this with
+																 the use of a <strong>forwarding table</strong> that maps portions of the desination address to one of that router's outbound links.<br>
+															 The Internet has a number of special <strong> routing protocols</strong> that are used to automatically set the forwarding tables.</p>
+
+
+
 																<p>A <strong>packet switch</strong> takes a package that's arriving into an incoming communication link, and forwards it
 																to an outgoing communication link.</p>
 
@@ -128,6 +134,31 @@
 																		<p>Most packet switches use <strong>store-and-forward transmission</strong> at the inputs to the link. This means that the
 																			packet-switch <strong>must receive the entire packet</strong> before it can begin to <strong>transfer the first bit of the packet into
 																			the outbound link</strong>.</p>
+
+																			<p> Now, let's calculate the time that a system using the store-and-forward method needs to forward three packets
+																				from a source, to a router, to a destination.<br>
+																				<ul>
+																				<li>Step 1: packet1 ----> router = L/R seconds</li>
+																				<li>Step 2: packet2 ----> router and packet1 --->destination = L/R seconds</li>
+																				<li>Step 3: packet3 ----> router and packet2 --->destination = L/R seconds</li>
+																				<li>Step 4: packet3 ---> destination = L/R seconds</li>
+																			</ul>
+																			Total time: 4L/R seconds.
+
+																		</p>
+
+																		<p>Another important formula, relevance unclear: <br>
+																				Where:
+																				<ul>
+																					<li> L = Bits</li>
+																					<li> R = Rate (in bits/sec) </li>
+																					<li> N = number of links each at rate R</li>
+
+																				</ul>
+
+																				The end-to-end delay = N*(L/R)<br>
+																				<strong>d<sub>end-to-end</sub> = N (L/R)</strong>
+																		</p>
 
 
 															<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: ISPs</button><br/><br/>
@@ -179,143 +210,70 @@
 														Although packet switches facilitate the exchange of data among end systems, <strong>they are not concerned with the application that is the source or sink of the data.</strong> </p>
 
 
-
-																	<p> To start, we're going to assume that you already have an Amazon Web Services account.
-																	To host a simple website with javascript and html, simply go to the <a href="https://us-west-2.console.aws.amazon.com/console/">AWS Management Console</a>
-																and click on "S3". </p>
-
-																<img class="small" src="img/AWSS3.png">
-
-																<p>Then click "Create a bucket." You should be see something like this: </p>
-																<img class="small" src="img/createSite/1-Create_bucket.png">
-																<p>Choose a name and a region and click "create." </p>
-
-																<p>Next you will arrive at a page like this:</p>
-																<img class="small" src="img/createSite/2-hit-upload.png">
-
-																<p>Hit upload and navigate to the directory that you put our index.html file in to upload it:</p>
-																<img class="small" src="img/createSite/3-upload-from-computer.png">
-
-																<p>Now that the file is ready hit upload once more:</p>
-																<img class="small" src="img/createSite/4-hit-start-upload.png">
-
-																<p>Next, in order to make your file accessible, <strong>you need to right-click on it and hit make public</strong>:</p>
-																<img class="small" src="img/createSite/5-hit-make-public.png">
-
-																<p>Finally, to retreive the url, right click and hit <strong>properties</strong>:</p>
-																<img class="small" src="img/createSite/6-hit-properties.png">
-
-
-																<p>And now the url of your index file is visible in the right-hand side of the screen, next to "link":</p>
-																<img class="small" src="img/createSite/7-get-link.png">
-
-																<p>That's the first URL that we need to register our app. Let's enter it now.</p>
-																<img class="small" src="img/enterWebsiteOfApp.png">
-
-																<br><br><button class="btn" onclick="$('#section-6').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Next: Creating the Redirect URI</button><br/><br/>
+																<br><br><button class="btn" onclick="$('#section-6').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Next: Queing Delays and Packet Loss</button><br/><br/>
 
                         </div>
 											</div>
 
                         <div id="section-6">
                             <div class="content-wrapper w60 disp_inl_blk">
-                                <h1>Creating the Redirect URI</h1>
-                                                <p>Now it's time to create the redirect URI.</p>
-                                                <p>This is a live file which will be contacted by SoundCloud's API, so that it can then send an <strong>authentication token</strong> back to our application. Once received, our application will be able to use this user token via <strong>callback functions</strong>. We'll go over that last.</p>
-																<p>Navigate to the folder on your computer that the index.html file is saved in and create a new html file.
-																	In this example it will be called callback.html.
+                                <h1>Queing Delays and Packet Loss</h1>
+                                                <p>Eech packet switch has multiple links attached to it. For each attached link, the packet switch has an <strong>output buffer</strong> (also called an <strong>output queue</strong>).</p>
+																								<p><strong>Output Queue:</strong> Stores packets that are the router is about to send into the link that it refers to.</p>
+																								<p> If a link is busy with the transmission of a packet, and another packet arrives there, it must wait in the output buffer. This is a <strong>queing delay.</strong>
 
-																	In callback.html, copy or copy/paste this code:
-																	<div class="element-demo">
-																		<p>
-																			<xmp><!DOCTYPE html></xmp>
-																			<xmp>	<html>	</xmp>
-																			<xmp>	<head>	</xmp>
-																				<xmp> <meta charset="UTF-8">	</xmp>
-																				<xmp>	<title>Callback</title> </xmp>
-																				<xmp>	</head>	</xmp>
-																				<xmp>	<body onload="window.setTimeout(opener.SC.connectCallback, 1);"></xmp>
-																							<xmp> <p> </xmp>
-																								<xmp>	This page should close soon </xmp>
-																							<xmp>	</p>	</xmp>
-																					<xmp>	</body>	</xmp>
-																				<xmp>	</html>	</xmp>
+																								If the finite buffer space is <strong> full</strong>, packet-loss will occur: either the arriving packet or one in the queue is <strong>dropped.</strong></p>
 
-
-																		</p>
-
-																	</div>
-																	<p>Now save the file and <strong>upload callback.html to the same bucket</strong> as you uploaded index.html too, and <strong>don't forget to also make this file public.</strong> </p>
-																	<p>	Just like you did with index.html, right click and hit "properties" to <strong>grab the url. </strong>It should be the same as the last url except that index.html should be replaced with callback.html.</p>
-																	<p>Now paste that url into your app at <a href="www.soundcloud.you.apps">soundcloud.you.apps</a> and <strong>hit "Save app:"</strong>:</p>
-																	<img class="small" src="img/save-callback-uri.png">
-
-																	<br><br><button class="btn" onclick="$('#section-7').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Adding the Javascript</button><br/><br/>
+																	<br><br><button class="btn" onclick="$('#section-7').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Citcuit Switching</button><br/><br/>
 															</div>
                             </div>
 
 														<div id="section-7">
 																<div class="content-wrapper w70 disp_inl_blk">
-																		<h1>Adding the Javascript</h1>
-																		<p>Finally, we're going to add some javascript to our index file that will <strong>use SoundCloud's HTTP API</strong>
-																			in order to <strong>prompt the user to connect their soundcloud account to our web app</strong> via a pop-up window.
-																			Add this javascript to index.html just before the closing <xmp></body></xmp> tag, replacing <small><strong>YOUR_CLIENT_ID</strong></strong> and <strong>http://example.com/callback</strong> with the proper credentials (instructions on how to do this further down):</p>
+																		<h1>Circuit Switching</h1>
+																		<p>In circuit-switched networks, the resources needed along a path to provide for
+																			 communication between the end systems are <strong>reserved</strong> for the duration of the communication session between the end systems.<br>
+																			 In packet-switched networks, these resources are <strong>not</strong> reserved. The circuit-switched network is like a resturaunt that requires reservations,
+																		  and the packet-switched network is like one that doesn't: in the packet-switched network, you have to deal with queing delays and whatnot, but in the circuit-switched
+																		network you have to order in advanced. </p>
 
-<pre><code class="language-javascript">
-		<xmp><script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script></xmp>
-																			<xmp>	<script>
-        SC.initialize({
-          client_id: 'YOUR_CLIENT_ID',
-          redirect_uri: 'http://example.com/callback'
-      });
+																		<p> An example of a circuit switched network is a traditional telephone network. A connection (a <strong>circuit</strong> in telephony jargon) between two users must be established between the sender
+																			and reciever, for which the switches on the path maintain connection state for that connection. The network reserves a constant transmission rate in the network's links
+																			for the duration of the connection. Therefor the sender can transfer the data to the receiver at a <strong>gaurenteed</strong> constant rate.</p>
+																			<p>A circuit in a link is implemented with either frequency-division multiplexing or time-division multiplexing.
 
-      // initiate auth popup
-      SC.connect().then(function() {
-          return SC.get('/me');
-      }).then(function(me) {
-          alert('Hello, ' + me.username);
-      });
-      </script>
-		</xmp>
-		</code>
-	</pre>
+																				<ul>
+																					<li><strong>Frequency-division multiplexing (FDM):</strong>
+																						For the duration of the connection, a link dedicates a frequency band to each connection. The width of the band is called the bandwidth. "the frequency spectrum of a link is divided up among the connections established across the link."</li>
+																					<li><strong>Time-division multiplixing (TDM):</strong> Time is divided into frames of a fixed duration, and each frame is divided into a fixed number of time slots.
+																					Across a link, a connection dedicates one timeslot per frame.</li>
+																				</ul>
 
-    <p> On the first line we gain access to the SoundCloud API, allowing us to access all of the functions and object types in <a href="https://connect.soundcloud.com/sdk/sdk-3.0.0.js">this file</a>. 'SC' is a type of object that exists in the SoundCloud API, which we link to as a javascript source on the first line.
-    If the credentials are valid than SC.connect() will initialize a connection to the user by contacting the redirect uri. If the redirect uri is valid than a <strong>Promise object</strong> is returned.
-    The next word, <strong>then</strong>, refers to the successful return of that <strong>Promise.</strong> If the connection is made and the promise is fulfilled, a request for the user (in the form of <code>SC.get('/me')</code>) is made... and finally the <strong>next</strong> then refers to the fulfillment of <strong>that</strong> Promise, upon success of which it will alert, "Hello, [username]!"
-    </p>
+																				<p> Math: </p>
+																				<p> For TDM, the transmission rate of a circuit is equal to the frame rate multiplied by the number of bits in a slot. Example: If a link trasmits 8,000 frames
+																					per second and each slot consists of 8 bits, the transmission rate of a circuit is 64 kbps.</p>
 
-    <p>
-    If the callback.html page <strong>does not close soon</strong> after and show the "hello" alert, there was probably a problem with the call-back.
-    </p>
-
-    <p>
-    If an <strong> "invalid uri"</strong> window pops up instead of a log-in window, there was probably a problem with authentication.
-    </p>
+																				<p> Another problem: We want to send a file of <strong>640,000 bits</strong> from Host A to Host B over a circuit-switched network, and all the links in the network use <strong>TDM with 24 slots</strong> and <strong>have a bit rate
+																					of 1.563 Mbps</strong>, and it takes <strong> 500 msec</strong> to establish an end-to-end circuit before Host A can begin to transmit the file. How long does it take to send the file?
 
 
-<p><small>YOUR_CLIENT_ID</small> should be replaced with <strong>the string of letters and numbers next to "client id" in your app</strong>. A client id serves a similar purpose to an API key: it prevents people from abusing the system by spamming it with requests, and in this case it adds security as well.<p>
-		<p>http://example.com/callback should be replaced with <strong>the live url to your callback file.</strong></p>
 
-		<p>Hopefully you have now saved them <a href="www.soundcloud.you.apps">where you registered your app:</a>
-			<img class="small" src="img/theseCreds.png">
-			<p>Once you've done that, hit save and then <strong>re-upoad index.html to your S3 bucket</strong> (don't forget to <strong>make it public again!</strong>).</p>
+																				<ul>
+																					<li>Step 1) Calculate transmission rate of a circuit (remember that the network dedicates just 1 timeslot per frame): (1.536 Mbps)/24 slots = 64 kbps (there are 1,000 kb in 1 mb)</li>
+																						<li> Step 2) Divide the size of the file by the transmission rate: 640,000 bits/64 kbps = 10 seconds (there are 1000 bytes in 1 kb, so it's 640 k bits/ 64 k bitsPerSeconds = 10 secs)</li>
+																							<li> Step 3) Add the 500 mscec = 1/2 seconds. So the total time is 10.5 seconds. <strong> The transmission time is indpendant of the number of links: it would be 10 seconds whether it were 1 or 100 links.</strong></li>
+																					<ul>
+																			</p>
 
-			<p>  Now, assuming all has gone well, and you turn off your pop-up blocker, when you enter your web-page you should be greeted by this:</p>
-			<img class="small" src="img/popup-signin.png">
 
-			<p>Your web app is now all set to connect to the SoundCloud accounts of visiting users! There are many more things you could choose to do with this API,
-      from allowing users to upload music to their SoundCloud accounts or play their music from your web app. Now that you've gotten started, check the documentation
-    at <a href=https://developers.soundcloud.com/>developers.soundcloud.com</a> to see what else you can do!</p>
 
 		<h2>Thank you for doing my tutorial!</h2>
-		<p> &emsp; -Colleen </span>
+		<p> &emsp; -Colleen </p>
 																</div>
                             <div class='content-wrapper w30 fr'>
                                 <a onclick="$('body').animatescroll();" class='ptr fr'><small>Go to Top</small></a>
                             </div>
                         </div>
                 </div>
-								<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
 	</body>
 </html>
