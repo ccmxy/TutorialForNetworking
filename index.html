@@ -414,7 +414,17 @@
 																	<h1>Lecture 3b: Packet-switched vs. Circuit-switched networks</h1>
 
 																	<p>1) Describe statistical multiplexing</p>
+																	<span class="hidden">
+																		Statistical multiplexing is the adaptive sharing of the transmission medium in packetswitched
+																		networks, based on whether or not hosts have data to transmit (on-demand),
+																		preventing the medium from being wasted by hosts without any data to transmit.
+																	</span>
+
 																	<p>2) Which are faster: Circuit-switched networks or Packet-switched networks?</p>
+																	<span class="hidden">It depends! A circuit-switched network may be faster due to the packet header overhead
+																		of packet-switched networks. However, a packet-switched network may be faster due to
+																		its more adaptive use of the transmission medium. It’s even more complicated than this…</span>
+
 																	<p>3) What is the total utilization of a circuit-switched network, accommodating 10 users with
 																		equal bandwidth, with the following users:
 
@@ -423,11 +433,23 @@
 																			<li>Two users are utilizing 60% of their bandwidth</li>
 																			<li>Four users are inactive</li>
 																		</ul>
+																		<span class="hidden">
+
+																				Four users utilizing 100% of their bandwidth: 4 users * (1.00) using all of bandwidth * 0.10 = 0.4 + <br>
+																				Two users utilizing 60%: 0.6 * 0.1 * 2 = 0.12 + <br>
+																				Four users inactive: 0 (0 * 0.1 * 4) = <br>
+																				0.52 = <strong>52%</strong>
+
+																		</span>
+
 																	</p>
 
 																	<p>4) What are some of the effects of congestion in a packet-switched network?</p>
+																	<span class="hidden">Packet delay, packet loss, jitter etc...</span>
+
 
 																	<h1> Lecture 4: Network Structure and Performance</h1>
+																	
 																	<p>1) What is an access network?/p>
 																	<p>2) ______________is the rate at which bits are actually transferred between sender/receiver/p>
 																	<p>3) Describe the sources of nodal delay in packet-switched networks.</p>
