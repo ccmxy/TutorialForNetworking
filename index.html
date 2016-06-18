@@ -310,6 +310,7 @@
 
 																	<p> 6) Convert the following units:
 																		<ul>
+																			<li>1 MB =  <span class="hidden">8,000,000</span> bits</li>
 																			<li>800 B =  <span class="hidden">6400</span> bits</li>
 																			<li>12 KiB =  <span class="hidden">2<sup>10</sup> x 8 x 12 = <strong>98,304</strong> </span> bits</li>
 																			<li>3 MiB =  <span class="hidden">8 x 2<sup>20</sup> x 3 = <strong>25,165,824</strong> </span> bits</li>
@@ -324,27 +325,66 @@
 																	<h1>Lecture 2: Overview of Networking</h1>
 
 																	<p>1) What does a protocol do?</p>
+																	<span class="hidden">
+																		<ul>
+																		<li>Specifies the format and order of messages sent and received among network
+																		entities.</li>
+																		<li>Specifies actions taken upon the transmission and receipt of messages.</li>
+																	</ul>
+																	</span>
+
 																	<p>2) What are some human protocols</p>
+																	<span class="hidden">Clinking a glass for a toast, tapping a glass with fork to announce a toast, raising your
+																		hand in a classroom, passing a “sharing stick” around a circle, Red/Yellow/Green traffic
+																		lights, etc…….</span>
 																	<p>3) What devices reside on the network edge?</p>
+																	<span class="hidden">End Systems / Hosts (smartphones, computers, servers, peers, etc…)</span>
 
 																	<p>4) What devices reside in the network core?</p>
+																	<span class="hidden">Interconnection devices (routers, switches, associated network cards, etc…)
+																	</span>
 																	<p>5) What is the difference between the client/server model and the Peer-to-Peer (P2P) model</p>
+																	<span class="hidden">A client-server model has a dedicated service provider, and a dedicated service consumer.
+																		In a peer-to-peer model, there is no dedicated provider/consumer, and organization is
+																		handled amongst the hosts</span>
+
 																	<p>6) What are some components of the TCP protocol?</p>
+																	<span class="hidden">
+																		<ul>
+																		<li>Connection-Oriented with 3-way connection-setup handshake</li>
+																		<li>Reliable, in-order data transfer</li>
+																		<li>Flow control</li>
+																		<li>Congestion control</li>
+																	</ul>
+																	</span>
 																	<p>7) What are some components of the UDP protocol?</p>
+																	<span class="hidden">
+																		<ul>
+																		<li>Connection-less</li>
+																		<li>Unreliable data transfer (Fire & Forget)</li>
+																		<li>No flow or congestion control</li>
+																	</ul>
+																	</span>
 
 																	<h1>Lecture 3a: Circuit-switching and Packet-switching</h1>
 
-																	<p>1) A ____________-switched network has a dedicated circuit through which information is
-																	sent, whereas a ____________-switched network sends information in “chunks” through
+																	<p>1) A <span class="hidden">circuit</span>-switched network has a dedicated circuit through which information is
+																	sent, whereas a <span class="hidden">packet</span>-switched network sends information in “chunks” through
 																	a network on shared media</p>
 
-																	<p>2) What units are we using for network bandwidth? ____________</p>
-																	<p>3) What units are used for transmission rate? ____________</p>
+																	<p>2) What units are we using for network bandwidth? <span class="hidden">bps</span></p>
+																	<p>3) What units are used for transmission rate? <span class="hidden">bps</span></p>
 
 																	<p>4) What is done with network resources in a circuit switched network to allow multiple
-																		users to utilize the network?</p>
+																		users to utilize the network?
+																		<span class="hidden">	The network resource is divided into chunks</span>
+																	</p>
+
 
 																	<p>5) What is the difference between TDM and FDM</p>
+																	<span class="hidden">	TDM divides the available bandwidth into discrete blocks of time, during which only one
+																		of the users is permitted to transmit. FDM divides the available into bands of frequency
+																		(like radio stations), in which only one user is permitted to transmit</span>
 
 																	<p>6) How long does it take to send a 13 KiB file from Host A to Host B over a circuitswitched
 																		network, assuming<br>
@@ -352,7 +392,24 @@
 																		The network is FDM, with 250 permitted users, each with an equal bandwidth share<br>
 																		A link connection setup requires 100ms.</p>
 
+																		<p class="hidden">
+
+																		IMPORTANT: bps stands for <strong>bits</strong> per second, but KiB stands for Kiba<strong>byte</strong><br>
+
+																		L (size in bits):<br>
+																		 13 KiB = 13 x 1024 <strong>bytes</strong> = 13,312 bytes <br>
+																		 13,312 bytes x 8 = <strong>106,496 bits.</strong><br>
+
+																		 R (rate in bits per second):  500Mbps/250 users = 2 Mbps = 2,000,000 bps (<strong>Mega</strong> means <strong>Million</strong>)<br>
+
+																		 106,496 bits/2,000,000 bitsps = 0.053248 seconds. <br>
+																		 0.053248 x 1000 ms = 53.248 ms.
+																		 53.248 ms + 100ms connection setup = <strong>153.248 ms.</strong>
+																	 </p>
+
+
 																		<p>7) What are three important functions of a packet-switched network?</p>
+																		<span class="hidden"> Packet Construction, Transmission, and Interpretation</span>
 
 																	<h1>Lecture 3b: Packet-switched vs. Circuit-switched networks</h1>
 
