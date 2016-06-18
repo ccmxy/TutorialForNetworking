@@ -161,39 +161,61 @@
 																		</p>
 
 
-															<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: ISPs</button><br/><br/>
+															<br><br><button class="btn" onclick="$('#section-3a').animatescroll({scrollSpeed:3000,easing:'easeOutElastic'});">Next: Queing Delays and Packet Loss</button><br/><br/>
                             </div>
                         </div>
 
+												<div id="section-3a">
+														<div class="content-wrapper w70">
+															<h1>Queing Delays and Packet Loss</h1>
+																							<p>Eech packet switch has multiple links attached to it. For each attached link, the packet switch has an <strong>output buffer</strong> (also called an <strong>output queue</strong>).</p>
+																							<p><strong>Output Queue:</strong> Stores packets that are the router is about to send into the link that it refers to.</p>
+																							<p> If a link is busy with the transmission of a packet, and another packet arrives there, it must wait in the output buffer. This is a <strong>queing delay.</strong>
+
+																							If the finite buffer space is <strong> full</strong>, packet-loss will occur: either the arriving packet or one in the queue is <strong>dropped.</strong></p>
+																							<br><br><button class="btn" onclick="$('#section-4').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Citcuit Switching</button><br/><br/>
+
+														</div>
+													</div>
+
                         <div id="section-4">
                             <div class="content-wrapper w70">
-                                <h1>ISPs</h1>
 
-																<p>End systems access the Internet through <strong>Internet Service Providers (ISPs)</strong>. </p>
+																<h1>Circuit Switching</h1>
+																<p>In circuit-switched networks, the resources needed along a path to provide for
+																	 communication between the end systems are <strong>reserved</strong> for the duration of the communication session between the end systems.<br>
+																	 In packet-switched networks, these resources are <strong>not</strong> reserved. The circuit-switched network is like a resturaunt that requires reservations,
+																	and the packet-switched network is like one that doesn't: in the packet-switched network, you have to deal with queing delays and whatnot, but in the circuit-switched
+																network you have to order in advanced. </p>
 
-																<p>Each ISP is in itself a network of packet switches and communication links. ISPs provide Internet access to both
-																users and content-providers, connecting websites directly to the Internet.</p>
+																<p> An example of a circuit switched network is a traditional telephone network. A connection (a <strong>circuit</strong> in telephony jargon) between two users must be established between the sender
+																	and reciever, for which the switches on the path maintain connection state for that connection. The network reserves a constant transmission rate in the network's links
+																	for the duration of the connection. Therefor the sender can transfer the data to the receiver at a <strong>gaurenteed</strong> constant rate.</p>
+																	<p>A circuit in a link is implemented with either frequency-division multiplexing or time-division multiplexing.
 
-																<p>Lower-tier ISPs are connected through national and international
-																	upper-tier ISPs, such as Level 3 Communications, AT&T, Sprint, and NTT. An upper-tier ISP consists of a high-speed router
-																interconnected with high-speed fiber-optic links.</p>
+																		<ul>
+																			<li><strong>Frequency-division multiplexing (FDM):</strong>
+																				For the duration of the connection, a link dedicates a frequency band to each connection. The width of the band is called the bandwidth. "the frequency spectrum of a link is divided up among the connections established across the link."</li>
+																			<li><strong>Time-division multiplixing (TDM):</strong> Time is divided into frames of a fixed duration, and each frame is divided into a fixed number of time slots.
+																			Across a link, a connection dedicates one timeslot per frame.</li>
+																		</ul>
 
-																<p>End-systems, packet-switches and more run <strong>protocols</strong> that control the sending and receiving of information within the Internet.</p>
-																<p>Two important protocols:</p>
-																<ul>
-																		<li>The <strong>Transmission Control Protocol(TCP)</strong></li>
-																		<li>The <strong>Internet Protocol (IP)</strong> </li>
-																</ul>
+																		<p> Math: </p>
+																		<p> For TDM, the transmission rate of a circuit is equal to the frame rate multiplied by the number of bits in a slot. Example: If a link trasmits 8,000 frames
+																			per second and each slot consists of 8 bits, the transmission rate of a circuit is 64 kbps.</p>
 
-																<p>Together, these are known as TC/IP.</p>
+																		<p> Another problem: We want to send a file of <strong>640,000 bits</strong> from Host A to Host B over a circuit-switched network, and all the links in the network use <strong>TDM with 24 slots</strong> and <strong>have a bit rate
+																			of 1.563 Mbps</strong>, and it takes <strong> 500 msec</strong> to establish an end-to-end circuit before Host A can begin to transmit the file. How long does it take to send the file?
 
-																<p><strong>Internet Standards</strong> are developed by the <strong>Internet Engineering Task Force (IETF)</strong>.
-																	The IETF standards documetns are called <strong>requests for comments (RFCs)</strong>. RFCs define protocols such as
-																	TCP, IP, HTTP (for web), and SMTP (for email). There are currently more than 6,000 RFCs.
 
-																</p>
 
-																<p>The IEE 802 LAN/MAN Standards Committee specifies the Ethernet and wireless WiFi standards.</p>
+																		<ul>
+																			<li>Step 1) Calculate transmission rate of a circuit (remember that the network dedicates just 1 timeslot per frame): (1.536 Mbps)/24 slots = 64 kbps (there are 1,000 kb in 1 mb)</li>
+																				<li> Step 2) Divide the size of the file by the transmission rate: 640,000 bits/64 kbps = 10 seconds (there are 1000 bytes in 1 kb, so it's 640 k bits/ 64 k bitsPerSeconds = 10 secs)</li>
+																					<li> Step 3) Add the 500 mscec = 1/2 seconds. So the total time is 10.5 seconds. <strong> The transmission time is indpendant of the number of links: it would be 10 seconds whether it were 1 or 100 links.</strong></li>
+																			</ul>
+																	</p>
+
 
 																 <br><br><button class="btn" onclick="$('#section-5').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: A Service Description</button><br/><br/>
 
@@ -210,64 +232,149 @@
 														Although packet switches facilitate the exchange of data among end systems, <strong>they are not concerned with the application that is the source or sink of the data.</strong> </p>
 
 
-																<br><br><button class="btn" onclick="$('#section-6').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Next: Queing Delays and Packet Loss</button><br/><br/>
+																<br><br><button class="btn" onclick="$('#section-6').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Next: ISPs</button><br/><br/>
 
                         </div>
 											</div>
 
                         <div id="section-6">
                             <div class="content-wrapper w60 disp_inl_blk">
-                                <h1>Queing Delays and Packet Loss</h1>
-                                                <p>Eech packet switch has multiple links attached to it. For each attached link, the packet switch has an <strong>output buffer</strong> (also called an <strong>output queue</strong>).</p>
-																								<p><strong>Output Queue:</strong> Stores packets that are the router is about to send into the link that it refers to.</p>
-																								<p> If a link is busy with the transmission of a packet, and another packet arrives there, it must wait in the output buffer. This is a <strong>queing delay.</strong>
+															<h1>ISPs</h1>
 
-																								If the finite buffer space is <strong> full</strong>, packet-loss will occur: either the arriving packet or one in the queue is <strong>dropped.</strong></p>
+															<p>End systems access the Internet through <strong>Internet Service Providers (ISPs)</strong>. </p>
 
-																	<br><br><button class="btn" onclick="$('#section-7').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Citcuit Switching</button><br/><br/>
+															<p>Each ISP is in itself a network of packet switches and communication links. ISPs provide Internet access to both
+															users and content-providers, connecting websites directly to the Internet.</p>
+
+															<p>Lower-tier ISPs are connected through national and international
+																upper-tier ISPs, such as Level 3 Communications, AT&T, Sprint, and NTT. An upper-tier ISP consists of a high-speed router
+															interconnected with high-speed fiber-optic links.</p>
+
+															<p>End-systems, packet-switches and more run <strong>protocols</strong> that control the sending and receiving of information within the Internet.</p>
+															<p>Two important protocols:</p>
+															<ul>
+																	<li>The <strong>Transmission Control Protocol(TCP)</strong></li>
+																	<li>The <strong>Internet Protocol (IP)</strong> </li>
+															</ul>
+
+															<p>Together, these are known as TC/IP.</p>
+
+															<p><strong>Internet Standards</strong> are developed by the <strong>Internet Engineering Task Force (IETF)</strong>.
+																The IETF standards documetns are called <strong>requests for comments (RFCs)</strong>. RFCs define protocols such as
+																TCP, IP, HTTP (for web), and SMTP (for email). There are currently more than 6,000 RFCs.
+
+															</p>
+
+															<p>The IEE 802 LAN/MAN Standards Committee specifies the Ethernet and wireless WiFi standards.</p>
+																	<br><br><button class="btn" onclick="$('#section-7').animatescroll({scrollSpeed:2000,easing:'easeOutBounce'});">Next: Exercises</button><br/><br/>
 															</div>
                             </div>
 
 														<div id="section-7">
 																<div class="content-wrapper w70 disp_inl_blk">
-																		<h1>Circuit Switching</h1>
-																		<p>In circuit-switched networks, the resources needed along a path to provide for
-																			 communication between the end systems are <strong>reserved</strong> for the duration of the communication session between the end systems.<br>
-																			 In packet-switched networks, these resources are <strong>not</strong> reserved. The circuit-switched network is like a resturaunt that requires reservations,
-																		  and the packet-switched network is like one that doesn't: in the packet-switched network, you have to deal with queing delays and whatnot, but in the circuit-switched
-																		network you have to order in advanced. </p>
 
-																		<p> An example of a circuit switched network is a traditional telephone network. A connection (a <strong>circuit</strong> in telephony jargon) between two users must be established between the sender
-																			and reciever, for which the switches on the path maintain connection state for that connection. The network reserves a constant transmission rate in the network's links
-																			for the duration of the connection. Therefor the sender can transfer the data to the receiver at a <strong>gaurenteed</strong> constant rate.</p>
-																			<p>A circuit in a link is implemented with either frequency-division multiplexing or time-division multiplexing.
+																	<h1>Lecture 1: Networks, the Internet, and Units </h1>
 
-																				<ul>
-																					<li><strong>Frequency-division multiplexing (FDM):</strong>
-																						For the duration of the connection, a link dedicates a frequency band to each connection. The width of the band is called the bandwidth. "the frequency spectrum of a link is divided up among the connections established across the link."</li>
-																					<li><strong>Time-division multiplixing (TDM):</strong> Time is divided into frames of a fixed duration, and each frame is divided into a fixed number of time slots.
-																					Across a link, a connection dedicates one timeslot per frame.</li>
-																				</ul>
+																	<p>1) What are some factors in why computer networking so complicated?</p>
 
-																				<p> Math: </p>
-																				<p> For TDM, the transmission rate of a circuit is equal to the frame rate multiplied by the number of bits in a slot. Example: If a link trasmits 8,000 frames
-																					per second and each slot consists of 8 bits, the transmission rate of a circuit is 64 kbps.</p>
+																	<p>2) Complete the following definitions: </p>
+																		<ul>
+																			<li>A network is ______ </li>
+																			<li>The internet is ____ </li>
+																		</ul>
 
-																				<p> Another problem: We want to send a file of <strong>640,000 bits</strong> from Host A to Host B over a circuit-switched network, and all the links in the network use <strong>TDM with 24 slots</strong> and <strong>have a bit rate
-																					of 1.563 Mbps</strong>, and it takes <strong> 500 msec</strong> to establish an end-to-end circuit before Host A can begin to transmit the file. How long does it take to send the file?
+																	<p> 3) Who invented the internet? </p>
+
+																	<p> 4) What is RFC? </p>
+
+																	<p> 5) What is the IETF? </p>
+
+																	<p> 6) Convert the following units:
+																		<ul>
+																			<li>800 B =  ____ bits</li>
+																			<li>12 KiB =  _____ bits</li>
+																			<li>3 MiB =  ____ bits</li>
+																			<li>3 KiB =  ____ bytes</li>
+																			<li>120 B = ____ bytes</li>
+																			<li>12 Kbps = ____ bps</li>
+																			<li>3 Mbps = _____ bps</li>
+																			<li>10 Gbps = ____ bps</li>
+																		</ul>
+																	</p>
+
+																	<h1>Lecture 2: Overview of Networking</h1>
+
+																	<p>1) What does a protocol do?</p>
+																	<p>2) What are some human protocols</p>
+																	<p>3) What devices reside on the network edge?</p>
+
+																	<p>4) What devices reside in the network core?</p>
+																	<p>5) What is the difference between the client/server model and the Peer-to-Peer (P2P) model</p>
+																	<p>6) What are some components of the TCP protocol?</p>
+																	<p>7) What are some components of the UDP protocol?</p>
+
+																	<h1>Lecture 3a: Circuit-switching and Packet-switching</h1>
+
+																	<p>1) A ____________-switched network has a dedicated circuit through which information is
+																	sent, whereas a ____________-switched network sends information in “chunks” through
+																	a network on shared media</p>
+
+																	<p>2) What units are we using for network bandwidth? ____________</p>
+																	<p>3) What units are used for transmission rate? ____________</p>
+
+																	<p>4) What is done with network resources in a circuit switched network to allow multiple
+																		users to utilize the network?</p>
+
+																	<p>5) What is the difference between TDM and FDM</p>
+
+																	<p>6) How long does it take to send a 13 KiB file from Host A to Host B over a circuitswitched
+																		network, assuming<br>
+																		Total link transmission rate = 500Mbps<br>
+																		The network is FDM, with 250 permitted users, each with an equal bandwidth share<br>
+																		A link connection setup requires 100ms.</p>
+
+																		<p>7) What are three important functions of a packet-switched network?</p>
+
+																	<h1>Lecture 3b: Packet-switched vs. Circuit-switched networks</h1>
+
+																	<p>1) Describe statistical multiplexing</p>
+																	<p>2) Which are faster: Circuit-switched networks or Packet-switched networks?</p>
+																	<p>3) What is the total utilization of a circuit-switched network, accommodating 10 users with
+																		equal bandwidth, with the following users:
+
+																		<ul>
+																			<li>Four users are utilizing 100% their bandwidth</li>
+																			<li>Two users are utilizing 60% of their bandwidth</li>
+																			<li>Four users are inactive</li>
+																		</ul>
+																	</p>
+
+																	<p>4) What are some of the effects of congestion in a packet-switched network?</p>
+
+																	<h1> Lecture 4: Network Structure and Performance</h1>
+																	<p>1) What is an access network?/p>
+																	<p>2) ______________is the rate at which bits are actually transferred between sender/receiver/p>
+																	<p>3) Describe the sources of nodal delay in packet-switched networks.</p>
+																	<p>4) What is the equation for end-to-end delay?</p>
+																	<p>5) Consider two hosts (A and B) connected by a single link with transmission rate <strong>R</strong> bps.<br>
+																		The hosts are separated physically by <strong>d</strong> meters along a cable for which the speed of
+																		propagation is <strong>s</strong> meters per second. Host A sends a packet of length <strong>L</strong> bits to host B</p>
+																		<ul>
+																	<li>	a. Show the propagation delay d<sub>prop</sub> in terms of<strong> d </strong>and <strong>s</strong>: </li>
+																		<li> b. Show the transmission delay d<sub>trans</sub> in terms of <strong>L</strong> and <strong>R</strong>:</li>
+																	<li>	c. Suppose Host A begins to transmit at time t = 0. At time t = d<sub>trans</sub> where is the last
+																		bit of the packet?</li>
+																	<li>	d. Suppose that d<sub>prop</sub> > d<sub>trans</sub>. At time t = d<sub>trans</sub>, where is the first bit of the packet?</li>
+																	<li>	e. Suppose that d<sub>prop</sub> < d<sub>trans</sub>. At time t = d<sub>trans</sub>, where is the first bit of the packet?</li>
+																	<li>	f. Let s = 2.5x10<sup>8</sup> m/s, L = 120 bits, R = 56 Kbps. Find <strong>d</strong> such that d<sub>prop</sub> = d<sub>trans</sub>.</li>
+																</ul>
+																			<p>
+
+																	<p>6) Suppose that there are N packets in a router’s queue. Given a constant packet length of L,
+																		and a constant transmission rate R, what is the average queuing delay for the N packets?</p>
 
 
-
-																				<ul>
-																					<li>Step 1) Calculate transmission rate of a circuit (remember that the network dedicates just 1 timeslot per frame): (1.536 Mbps)/24 slots = 64 kbps (there are 1,000 kb in 1 mb)</li>
-																						<li> Step 2) Divide the size of the file by the transmission rate: 640,000 bits/64 kbps = 10 seconds (there are 1000 bytes in 1 kb, so it's 640 k bits/ 64 k bitsPerSeconds = 10 secs)</li>
-																							<li> Step 3) Add the 500 mscec = 1/2 seconds. So the total time is 10.5 seconds. <strong> The transmission time is indpendant of the number of links: it would be 10 seconds whether it were 1 or 100 links.</strong></li>
-																					<ul>
-																			</p>
-
-
-
-		<p> &emsp; -Colleen </p>
+																	<p> &emsp; -Colleen </p>
 																</div>
                             <div class='content-wrapper w30 fr'>
                                 <a onclick="$('body').animatescroll();" class='ptr fr'><small>Go to Top</small></a>
